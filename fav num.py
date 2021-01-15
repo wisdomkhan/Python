@@ -1,12 +1,10 @@
-fav_no = {}
-k = int(input('Enter limit\n'))
-
-for i in range(k):
-    s = input('\nEnter Name:')
-    n = input('Enter Fav no:')
-    fav_no[s] = n
-
-print('\n', fav_no, '\n')
-
-for s, n in fav_no.items():
-    print(s.title() + ' your fav no is ' + n + '.\n')
+import json
+try:
+    with open('favNum.json') as f1:
+        n = json.load(f1)
+except FileNotFoundError:
+    n = input('Enter your favourite number\t')
+    with open('favNum.json', 'w') as f1:
+        json.dump(n, f1)
+else:
+    print("Your fav no is " + n)
